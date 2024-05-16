@@ -1,5 +1,5 @@
 import { UNSUPPORTED_LIST_URLS } from './../../constants/lists'
-import DEFAULT_TOKEN_LIST from '@uniswap/default-token-list'
+// import DEFAULT_TOKEN_LIST from '@uniswap/default-token-list'
 import { Tags, TokenList } from '@uniswap/token-lists'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
@@ -8,6 +8,7 @@ import sortByListPriority from 'utils/listSort'
 import UNSUPPORTED_TOKEN_LIST from '../../constants/tokenLists/uniswap-v2-unsupported.tokenlist.json'
 // import { useFetchListCallback } from 'hooks/useFetchListCallback'
 import { WrappedTokenInfo } from './wrappedTokenInfo'
+import DEFAULT_TOKENS from './default_tokens.json'
 
 type TagDetails = Tags[keyof Tags]
 export interface TagInfo extends TagDetails {
@@ -47,7 +48,7 @@ function listToTokenMap(list: TokenList): TokenAddressMap {
   return map
 }
 
-const TRANSFORMED_DEFAULT_TOKEN_LIST = listToTokenMap(DEFAULT_TOKEN_LIST)
+const TRANSFORMED_DEFAULT_TOKEN_LIST = listToTokenMap(DEFAULT_TOKENS)
 
 export function useAllLists(): {
   readonly [url: string]: {

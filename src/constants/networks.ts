@@ -7,6 +7,7 @@ import BNB_LOGO_URL from '../assets/images/bnb-logo.svg'
 import BASE_LOGO_URL from '../assets/images/base-logo.svg'
 import { ChainId } from '@uniswap/sdk-core'
 import AVALANCHE_LOGO_URL from '../assets/images/avalanche-logo.png'
+import LAMBDA_LOGO_URL from '../assets/images/lambda-logo.png'
 
 export enum SupportedNetwork {
   ETHEREUM,
@@ -17,6 +18,7 @@ export enum SupportedNetwork {
   BNB,
   BASE,
   AVALANCHE,
+  LAMBDA,
 }
 
 export type NetworkInfo = {
@@ -117,13 +119,25 @@ export const AvalancheNetworkInfo: NetworkInfo = {
   imageURL: AVALANCHE_LOGO_URL,
 }
 
+export const LambdaNetworkInfo: NetworkInfo = {
+  chainId: ChainId.LAMBDA,
+  id: SupportedNetwork.LAMBDA,
+  route: 'lambda',
+  name: 'Lambda',
+  bgColor: '#6B8AFF33',
+  primaryColor: '#6B8AFF33',
+  secondaryColor: '#6B8AFF33',
+  imageURL: LAMBDA_LOGO_URL,
+}
+
 export const SUPPORTED_NETWORK_VERSIONS: NetworkInfo[] = [
-  EthereumNetworkInfo,
-  PolygonNetworkInfo,
-  OptimismNetworkInfo,
-  ArbitrumNetworkInfo,
-  CeloNetworkInfo,
-  BNBNetworkInfo,
-  BaseNetworkInfo,
-  AvalancheNetworkInfo,
+  // EthereumNetworkInfo,
+  // PolygonNetworkInfo,
+  // OptimismNetworkInfo,
+  // ArbitrumNetworkInfo,
+  // CeloNetworkInfo,
+  // BNBNetworkInfo,
+  // BaseNetworkInfo,
+  // AvalancheNetworkInfo,
+  LambdaNetworkInfo,
 ]

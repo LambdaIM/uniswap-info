@@ -15,8 +15,13 @@ import PoolPage from './Pool/PoolPage'
 import { ExternalLink, TYPE } from 'theme'
 import { useActiveNetworkVersion, useSubgraphStatus } from 'state/application/hooks'
 import { DarkGreyCard } from 'components/Card'
-import { SUPPORTED_NETWORK_VERSIONS, EthereumNetworkInfo, OptimismNetworkInfo } from 'constants/networks'
-import { Link } from 'rebass'
+import {
+  SUPPORTED_NETWORK_VERSIONS,
+  // EthereumNetworkInfo,
+  // OptimismNetworkInfo,
+  LambdaNetworkInfo,
+} from 'constants/networks'
+// import { Link } from 'rebass'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -82,20 +87,20 @@ const WarningBanner = styled.div`
   font-weight: 500;
 `
 
-const UrlBanner = styled.div`
-  background-color: ${({ theme }) => theme.pink1};
-  padding: 1rem 0.75rem;
-  color: white;
-  font-size: 14px;
-  width: 100%;
-  text-align: center;
-  font-weight: 500;
-`
+// const UrlBanner = styled.div`
+//   background-color: ${({ theme }) => theme.pink1};
+//   padding: 1rem 0.75rem;
+//   color: white;
+//   font-size: 14px;
+//   width: 100%;
+//   text-align: center;
+//   font-weight: 500;
+// `
 
-const Decorator = styled.span`
-  text-decoration: underline;
-  color: white;
-`
+// const Decorator = styled.span`
+//   text-decoration: underline;
+//   color: white;
+// `
 
 const BLOCK_DIFFERENCE_THRESHOLD = 30
 
@@ -112,7 +117,7 @@ export default function App() {
   const [activeNetwork, setActiveNetwork] = useActiveNetworkVersion()
   useEffect(() => {
     if (location.pathname === '/') {
-      setActiveNetwork(EthereumNetworkInfo)
+      setActiveNetwork(LambdaNetworkInfo)
     } else {
       SUPPORTED_NETWORK_VERSIONS.map((n) => {
         if (location.pathname.includes(n.route.toLocaleLowerCase())) {
@@ -126,7 +131,7 @@ export default function App() {
   const [subgraphStatus] = useSubgraphStatus()
 
   const showNotSyncedWarning =
-    subgraphStatus.headBlock && subgraphStatus.syncedBlock && activeNetwork === OptimismNetworkInfo
+    subgraphStatus.headBlock && subgraphStatus.syncedBlock && activeNetwork === LambdaNetworkInfo
       ? subgraphStatus.headBlock - subgraphStatus.syncedBlock > BLOCK_DIFFERENCE_THRESHOLD
       : false
 
@@ -147,14 +152,14 @@ export default function App() {
                 </WarningBanner>
               </BannerWrapper>
             )}
-            <BannerWrapper>
-              <UrlBanner>
-                {`Explore the new combined V2 and V3 analytics at `}
-                <Link href={'https://app.uniswap.org/explore'}>
-                  <Decorator>app.uniswap.org</Decorator>
-                </Link>
-              </UrlBanner>
-            </BannerWrapper>
+            {/*<BannerWrapper>*/}
+            {/*  <UrlBanner>*/}
+            {/*    {`Explore the new combined V2 and V3 analytics at `}*/}
+            {/*    <Link href={'https://app.uniswap.org/explore'}>*/}
+            {/*      <Decorator>app.uniswap.org</Decorator>*/}
+            {/*    </Link>*/}
+            {/*  </UrlBanner>*/}
+            {/*</BannerWrapper>*/}
             <Hide1080>
               <TopBar />
             </Hide1080>

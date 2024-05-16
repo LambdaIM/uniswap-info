@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { BookOpen, Code, Info, MessageCircle } from 'react-feather'
+import { BookOpen, Code, Info /*, MessageCircle*/ } from 'react-feather'
 import styled from 'styled-components'
 import { ReactComponent as MenuIcon } from '../../assets/images/menu.svg'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
@@ -109,10 +109,10 @@ export default function Menu() {
             <Code size={14} />
             Github
           </MenuItem>
-          <MenuItem id="link" href="https://discord.gg/FCfyBSbCU5">
-            <MessageCircle size={14} />
-            Discord
-          </MenuItem>
+          {/*<MenuItem id="link" href="https://discord.gg/FCfyBSbCU5">*/}
+          {/*  <MessageCircle size={14} />*/}
+          {/*  Discord*/}
+          {/*</MenuItem>*/}
         </MenuFlyout>
       )}
     </StyledMenu>

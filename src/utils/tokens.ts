@@ -1,6 +1,6 @@
 import { Token } from '@uniswap/sdk-core'
-import { CeloNetworkInfo, NetworkInfo, PolygonNetworkInfo } from 'constants/networks'
-import { CELO_ADDRESS, MATIC_ADDRESS, WETH_ADDRESSES } from '../constants'
+import { /*CeloNetworkInfo,*/ NetworkInfo /*, PolygonNetworkInfo*/ } from 'constants/networks'
+import { /*CELO_ADDRESS, MATIC_ADDRESS,*/ WETH_ADDRESSES } from '../constants'
 
 export interface SerializedToken {
   chainId: number
@@ -22,15 +22,15 @@ export function serializeToken(token: Token): SerializedToken {
 
 export function formatTokenSymbol(address: string, symbol: string, activeNetwork?: NetworkInfo) {
   // dumb catch for matic
-  if (address === MATIC_ADDRESS && activeNetwork === PolygonNetworkInfo) {
-    return 'MATIC'
-  }
-
-  // dumb catch for Celo
-  if (address === CELO_ADDRESS && activeNetwork === CeloNetworkInfo) {
-    return 'CELO'
-  }
-
+  // if (address === MATIC_ADDRESS && activeNetwork === PolygonNetworkInfo) {
+  //   return 'MATIC'
+  // }
+  //
+  // // dumb catch for Celo
+  // if (address === CELO_ADDRESS && activeNetwork === CeloNetworkInfo) {
+  //   return 'CELO'
+  // }
+  console.debug(activeNetwork?.chainId)
   if (WETH_ADDRESSES.includes(address)) {
     return 'ETH'
   }
@@ -39,15 +39,15 @@ export function formatTokenSymbol(address: string, symbol: string, activeNetwork
 
 export function formatTokenName(address: string, name: string, activeNetwork?: NetworkInfo) {
   // dumb catch for matic
-  if (address === MATIC_ADDRESS && activeNetwork === PolygonNetworkInfo) {
-    return 'MATIC'
-  }
-
-  // dumb catch for Celo
-  if (address === CELO_ADDRESS && activeNetwork === CeloNetworkInfo) {
-    return 'CELO'
-  }
-
+  // if (address === MATIC_ADDRESS && activeNetwork === PolygonNetworkInfo) {
+  //   return 'MATIC'
+  // }
+  //
+  // // dumb catch for Celo
+  // if (address === CELO_ADDRESS && activeNetwork === CeloNetworkInfo) {
+  //   return 'CELO'
+  // }
+  console.debug(activeNetwork?.chainId)
   if (WETH_ADDRESSES.includes(address)) {
     return 'Ether'
   }

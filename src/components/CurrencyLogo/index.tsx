@@ -23,13 +23,15 @@ export function chainIdToNetworkName(networkId: ChainId) {
       return 'smartchain'
     case ChainId.BASE:
       return 'base'
+    case ChainId.LAMBDA:
+      return 'lambda'
     default:
       return 'ethereum'
   }
 }
 
 const getTokenLogoURL = ({ address, chainId }: { address: string; chainId: ChainId }) => {
-  return `https://raw.githubusercontent.com/uniswap/assets/master/blockchains/${chainIdToNetworkName(
+  return `https://raw.githubusercontent.com/LambdaIM/assets/master/blockchains/${chainIdToNetworkName(
     chainId,
   )}/assets/${address}/logo.png`
 }
@@ -67,6 +69,7 @@ export default function CurrencyLogo({
   const celo = useCombinedActiveList()?.[42220]
   const bnbList = useCombinedActiveList()?.[ChainId.BNB]
   const baseList = useCombinedActiveList()?.[ChainId.BASE]
+  const lambdaList = useCombinedActiveList()?.[ChainId.LAMBDA]
 
   const [activeNetwork] = useActiveNetworkVersion()
 
@@ -120,6 +123,14 @@ export default function CurrencyLogo({
   }, [checkSummed, celo])
   const uriLocationsCelo = useHttpLocations(celoURI)
 
+  const LambdaURI = useMemo(() => {
+    if (checkSummed && lambdaList?.[checkSummed]) {
+      return lambdaList?.[checkSummed].token.logoURI
+    }
+    return undefined
+  }, [checkSummed, lambdaList])
+  const uriLocationsLambda = useHttpLocations(LambdaURI)
+
   //temp until token logo issue merged
   const tempSources: { [address: string]: string } = useMemo(() => {
     return {
@@ -141,6 +152,7 @@ export default function CurrencyLogo({
         ...uriLocationsCelo,
         ...uriLocationsBNB,
         ...uriLocationsBase,
+        ...uriLocationsLambda,
         override,
       ]
     }
@@ -155,6 +167,7 @@ export default function CurrencyLogo({
     uriLocationsCelo,
     uriLocationsBNB,
     uriLocationsBase,
+    uriLocationsLambda,
   ])
 
   if (activeNetwork === OptimismNetworkInfo && address === '0x4200000000000000000000000000000000000006') {

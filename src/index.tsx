@@ -15,7 +15,7 @@ import ApplicationUpdater from './state/application/updater'
 import ListUpdater from './state/lists/updater'
 import ThemeProvider, { FixedGlobalStyle, ThemedGlobalStyle } from './theme'
 import { ApolloProvider } from '@apollo/client/react'
-import { client } from 'apollo/client'
+import { lambdaClient } from 'apollo/client'
 import { SharedEventName } from '@uniswap/analytics-events'
 
 // Actual key is set by proxy server
@@ -44,7 +44,7 @@ const root = createRoot(container!)
 root.render(
   <StrictMode>
     <FixedGlobalStyle />
-    <ApolloProvider client={client}>
+    <ApolloProvider client={lambdaClient}>
       <Provider store={store}>
         <Updaters />
         <ThemeProvider>

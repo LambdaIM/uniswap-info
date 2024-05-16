@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client'
 
 export const healthClient = new ApolloClient({
-  uri: 'https://api.thegraph.com/index-node/graphql',
+  uri: 'https://graph.lambda.im/graphql',
   cache: new InMemoryCache(),
 })
 
@@ -336,6 +336,49 @@ export const celoClient = new ApolloClient({
 
 export const celoBlockClient = new ApolloClient({
   uri: 'https://api.thegraph.com/subgraphs/name/jesse-sawa/celo-blocks',
+  cache: new InMemoryCache(),
+  queryDeduplication: true,
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: 'cache-first',
+    },
+    query: {
+      fetchPolicy: 'cache-first',
+      errorPolicy: 'all',
+    },
+  },
+})
+
+export const lambdaClient = new ApolloClient({
+  uri: 'https://graph.lambda.im/subgraphs/name/uniswap-v3',
+  cache: new InMemoryCache({
+    typePolicies: {
+      Token: {
+        // Singleton types that have no identifying field can use an empty
+        // array for their keyFields.
+        keyFields: false,
+      },
+      Pool: {
+        // Singleton types that have no identifying field can use an empty
+        // array for their keyFields.
+        keyFields: false,
+      },
+    },
+  }),
+  queryDeduplication: true,
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: 'no-cache',
+    },
+    query: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'all',
+    },
+  },
+})
+
+export const lambdaBlockClient = new ApolloClient({
+  uri: 'https://graph.lambda.im/subgraphs/name/lambda-blocks',
   cache: new InMemoryCache(),
   queryDeduplication: true,
   defaultOptions: {

@@ -15,6 +15,8 @@ export const CHAIN_IDS_TO_NAMES = {
   [ChainId.BNB]: 'bnb',
   [ChainId.AVALANCHE]: 'avalanche',
   [ChainId.BASE]: 'base',
+  [ChainId.LAMBDA]: 'lambda',
+  [ChainId.LAMBDA_HOLESKY]: 'lambda_holesky',
 } as const
 
 // Include ChainIds in this array if they are not supported by the UX yet, but are already in the SDK.
@@ -53,12 +55,13 @@ export const SUPPORTED_GAS_ESTIMATE_CHAIN_IDS = [
   ChainId.BNB,
   ChainId.AVALANCHE,
   ChainId.BASE,
+  ChainId.LAMBDA,
 ] as const
 
 /**
  * Supported networks for V2 pool behavior.
  */
-export const SUPPORTED_V2POOL_CHAIN_IDS = [ChainId.MAINNET, ChainId.GOERLI] as const
+export const SUPPORTED_V2POOL_CHAIN_IDS = [ChainId.MAINNET, ChainId.GOERLI, ChainId.LAMBDA] as const
 
 export const TESTNET_CHAIN_IDS = [
   ChainId.GOERLI,
@@ -67,6 +70,7 @@ export const TESTNET_CHAIN_IDS = [
   ChainId.ARBITRUM_GOERLI,
   ChainId.OPTIMISM_GOERLI,
   ChainId.CELO_ALFAJORES,
+  ChainId.LAMBDA_HOLESKY,
 ] as const
 
 /**
@@ -96,6 +100,8 @@ export const L2_CHAIN_IDS = [
   ChainId.OPTIMISM,
   ChainId.OPTIMISM_GOERLI,
   ChainId.BASE,
+  ChainId.LAMBDA,
+  ChainId.LAMBDA_HOLESKY,
 ] as const
 
 export type SupportedL2ChainId = (typeof L2_CHAIN_IDS)[number]
@@ -129,8 +135,11 @@ export function getChainPriority(chainId: ChainId): number {
     case ChainId.CELO:
     case ChainId.CELO_ALFAJORES:
       return 7
-    default:
+    case ChainId.LAMBDA:
+    case ChainId.LAMBDA_HOLESKY:
       return 8
+    default:
+      return 9
   }
 }
 
