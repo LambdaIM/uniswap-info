@@ -65,7 +65,7 @@ export const START_BLOCKS: { [key: string]: number } = {
   [SupportedNetwork.BNB]: 26324014,
   [SupportedNetwork.AVALANCHE]: 31422450,
   [SupportedNetwork.BASE]: 1371680,
-  [SupportedNetwork.LAMBDA]: 956482,
+  [SupportedNetwork.LAMBDA]: 956450,
 }
 
 export interface WalletInfo {
