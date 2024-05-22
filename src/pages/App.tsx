@@ -172,9 +172,7 @@ export default function App() {
                   <TYPE.label>
                     The Graph hosted network which provides data for this site is temporarily experiencing issues. Check
                     current status{' '}
-                    <ExternalLink href="https://thegraph.com/hosted-service/subgraph/uniswap/uniswap-v3">
-                      here.
-                    </ExternalLink>
+                    <ExternalLink href="https://graph.lambda.im/subgraphs/name/uniswap-v3">here.</ExternalLink>
                   </TYPE.label>
                 </DarkGreyCard>
               </BodyWrapper>
@@ -185,7 +183,7 @@ export default function App() {
               <Routes>
                 <Route path="/:networkID?/pools/:address" element={<PoolPage />} />
                 <Route path="/:networkID?/pools" element={<PoolsOverview />} />
-                <Route path="/:networkID?/tokens/:address" element={<RedirectInvalidToken />} />
+                <Route path="/:networkID?/tokens/tokens?/:address" element={<RedirectInvalidToken />} />
                 <Route path="/:networkID?/tokens" element={<TokensOverview />} />
                 <Route path="/:networkID?" element={<Home />} />
               </Routes>
